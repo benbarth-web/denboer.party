@@ -11,6 +11,7 @@
 
             var audio = document.getElementById("audio");
             audio.muted = false;
+            audio.load();
             audio.play();
 
             document.body.classList.add("strobe");
