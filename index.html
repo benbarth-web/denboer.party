@@ -4,6 +4,25 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <script>
+        document.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            var audio = document.getElementById("audio");
+            audio.muted = false;
+            audio.play();
+
+            document.body.classList.add("strobe");
+
+            var start = document.getElementById("start");
+            start.classList.add("hidden");
+
+            setTimeout(function () {
+                var party = document.getElementById("party");
+                party.classList.remove("hidden");
+            }, 14500);
+        }, false);
+    </script>
     <style>
         html,
         body {
@@ -15,6 +34,9 @@
         body {
             background: linear-gradient(120deg, #000000, #3b9476, #31aec4, #000000, #23cfd5, #22092c, #000000);
             background-size: 300% 300%;
+        }
+
+        .strobe {
             animation: gradient .9s ease infinite;
         }
 
@@ -45,9 +67,14 @@
             top: 30%;
             left: 20%;
         }
-        
+
         .hidden {
             visibility: hidden;
+        }
+
+        .offscreen {
+            position: fixed;
+            left: -9999999;
         }
 
         .blink {
@@ -85,12 +112,15 @@
 </head>
 
 <body>
-    <audio controls autoplay loop class="hidden">
-        <source src="beat.mp3" type="audio/mp3">
-        Your browser does not support the audio element.
+    <audio id="audio" src="beat.mp3" controls muted autoplay class="offscreen">
+        <p>If you can reading this, your browser does not support audio. 😔</p>
     </audio>
 
-    <span class="large center blink">
+    <span id="start" class="large center">
+        click to get this party started
+    </span>
+
+    <span id="party" class="large center blink hidden">
         ain't no party&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;like a Denboer party
     </span>
 
